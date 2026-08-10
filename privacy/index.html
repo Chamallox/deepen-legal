@@ -54,7 +54,7 @@
 <p>Readloop has no sign-up, no login, no email address and no password. Nothing you do in the app is tied to a name, an email address, or a social profile, because the app never asks for any of them.</p>
 <p>Your books, your notes, your recordings, your word cards and your saved passages are stored <strong>on your device</strong>. They are not backed up to a Readloop server, and there is no server-side copy of your library that we or anyone else could look at.</p>
 <h2>What leaves your device, and where it goes</h2>
-<p>Three things leave your device. Each one is listed with what it contains and who receives it.</p>
+<p>Four things leave your device. Each one is listed with what it contains and who receives it.</p>
 <h3>1. Your recordings and notes, to turn speech into text</h3>
 <p>When you record a recap, the audio file is sent to Readloop's processing service, which passes it to <strong>OpenAI</strong> for transcription and then for turning the transcript into concepts. The transcript is sent back to your device and stored there.</p>
 <ul>
@@ -74,6 +74,14 @@
 <p>Readloop records which screens are opened and which buttons are tapped, so friction can be found and fixed. This goes to <strong>PostHog</strong>, hosted in the European Union.</p>
 <p><strong>These events never contain what you read, wrote, said or looked up.</strong> No book title, no author, no note text, no concept, no quote, no question, no word you searched for, and no file name. What travels is shapes rather than content: a count of pages, a count of characters, a duration in whole seconds, the name of a screen, and whether you have a subscription.</p>
 <p><strong>You can turn this off.</strong> Settings has a "Share usage data" switch. Turning it off stops the requests being made at all, rather than filtering them afterwards.</p>
+<h3>4. A bug report or an idea, only when you write one and tap Send</h3>
+<p>Settings has "Report a bug" and "Suggest an idea". Nothing is sent unless you type something and tap Send. This also goes to PostHog, in the same European Union project as above.</p>
+<ul>
+<li><strong>What is sent:</strong> the text you wrote. <strong>A bug report also carries the app version, the build number, your iOS version, and your two-letter region</strong> (for example FR), because a bug that cannot be reproduced cannot be fixed. <strong>An idea carries none of those</strong>, since none of them help.</li>
+<li><strong>You choose every word.</strong> This is the one thing here that is free text rather than a shape, so it contains whatever you put in it. If you would rather not include a book's title or a quote, leave it out and the report still works.</li>
+<li><strong>The "Share usage data" switch does not cover this</strong>, on purpose: turning off anonymous counting should not also take away your ability to report a problem. Sending is a tap you make each time.</li>
+<li>Sent with the same random install identifier as the usage counts, so a follow-up report can be recognised as coming from the same install.</li>
+</ul>
 <h2>Third-party services the app talks to directly</h2>
 <p>Some features look things up in public catalogues. In each case the app talks to that service directly, using a plain connection that carries <strong>no Readloop identifier</strong>, so the service cannot link one lookup to another or build a profile across your session.</p>
 <table>
