@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Readloop Privacy Policy</title>
+<style>
+  :root {
+    --surface: #FAF5EC; --card: #FFFDF7; --ink: #2B2620;
+    --subtle: #7D7466; --accent: #B4502A; --hairline: #E6DECD;
+    color-scheme: light;
+  }
+  body {
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 40rem; margin: 0 auto; padding: 3.5rem 1.25rem 6rem;
+    color: var(--ink); background: var(--surface);
+    -webkit-text-size-adjust: 100%;
+  }
+  h1, h2, h3 {
+    font-family: ui-serif, "New York", Georgia, "Times New Roman", serif;
+    font-weight: 600; color: var(--ink); letter-spacing: -0.01em;
+  }
+  h1 { font-size: 2rem; margin: 0 0 0.4rem; }
+  h2 { font-size: 1.35rem; margin: 2.8rem 0 0.6rem; }
+  h3 { font-size: 1.08rem; margin: 2rem 0 0.5rem; }
+  /* A short centred rule under the title, the ornament `EditorialRule` draws in the app. */
+  h1 + p { color: var(--subtle); font-size: 0.95rem; margin: 0 0 2.5rem;
+    padding-bottom: 2rem; border-bottom: 1px solid var(--hairline); }
+  p { margin: 0.9rem 0; }
+  strong { font-weight: 600; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  /* Cards are a brighter sheet framed by a hairline, never a drop shadow: see `CardModifier`. */
+  table {
+    border-collapse: collapse; width: 100%; margin: 1.4rem 0; font-size: 0.94rem;
+    background: var(--card); border: 1px solid var(--hairline); border-radius: 8px;
+    overflow: hidden;
+  }
+  th, td { border-bottom: 1px solid var(--hairline); padding: 0.6rem 0.7rem;
+    text-align: left; vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  th { font-weight: 600; font-size: 0.82rem; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--subtle); }
+  ul { padding-left: 1.15rem; }
+  li { margin: 0.4rem 0; }
+  li::marker { color: var(--accent); }
+</style>
+</head>
+<body>
+<h1>Readloop Privacy Policy</h1>
+<p><strong>Last updated: 10 August 2026</strong></p>
+<p>Readloop is a reading app. You log the pages you have read, the app asks you one open question, you answer it out loud, and your answer becomes concepts on a map that links everything you read.</p>
+<p>This page describes exactly what that involves. It is written against the app's actual behaviour rather than as a general statement of intent.</p>
+<h2>There is no account</h2>
+<p>Readloop has no sign-up, no login, no email address and no password. Nothing you do in the app is tied to a name, an email address, or a social profile, because the app never asks for any of them.</p>
+<p>Your books, your notes, your recordings, your word cards and your saved passages are stored <strong>on your device</strong>. They are not backed up to a Readloop server, and there is no server-side copy of your library that we or anyone else could look at.</p>
+<h2>What leaves your device, and where it goes</h2>
+<p>Three things leave your device. Each one is listed with what it contains and who receives it.</p>
+<h3>1. Your recordings and notes, to turn speech into text</h3>
+<p>When you record a recap, the audio file is sent to Readloop's processing service, which passes it to <strong>OpenAI</strong> for transcription and then for turning the transcript into concepts. The transcript is sent back to your device and stored there.</p>
+<ul>
+<li><strong>What is sent:</strong> the audio recording, and then its transcript. If the recap belongs to a book, the book's title and the page range are sent with it.</li>
+<li><strong>What happens to it:</strong> Readloop's service processes the request and returns the result. It has <strong>no database</strong>. The audio is held in memory for the length of the request and is not written to disk or to any storage bucket.</li>
+<li><strong>Who else sees it:</strong> OpenAI, as the provider that performs the transcription and the text generation. Their handling of API data is governed by their own terms.</li>
+<li><strong>The recording itself stays on your device</strong> as well, so you can play it back or retry a failed transcription.</li>
+</ul>
+<h3>2. Your question and your own notes, when you use Ask</h3>
+<p>Ask answers questions about what you have already read. To do that, it sends your question along with the text of the notes it judged relevant, so the answer can be grounded in your own words.</p>
+<ul>
+<li><strong>What is sent:</strong> your question, plus excerpts from your own notes.</li>
+<li><strong>Ask does not search the web.</strong> Answers come from your notes and nothing else.</li>
+<li>Same processing path as above: no database, no stored copy, OpenAI as the provider.</li>
+</ul>
+<h3>3. Anonymous usage counts, which you can turn off</h3>
+<p>Readloop records which screens are opened and which buttons are tapped, so friction can be found and fixed. This goes to <strong>PostHog</strong>, hosted in the European Union.</p>
+<p><strong>These events never contain what you read, wrote, said or looked up.</strong> No book title, no author, no note text, no concept, no quote, no question, no word you searched for, and no file name. What travels is shapes rather than content: a count of pages, a count of characters, a duration in whole seconds, the name of a screen, and whether you have a subscription.</p>
+<p><strong>You can turn this off.</strong> Settings has a "Share usage data" switch. Turning it off stops the requests being made at all, rather than filtering them afterwards.</p>
+<h2>Third-party services the app talks to directly</h2>
+<p>Some features look things up in public catalogues. In each case the app talks to that service directly, using a plain connection that carries <strong>no Readloop identifier</strong>, so the service cannot link one lookup to another or build a profile across your session.</p>
+<table>
+<tr><th>Service</th><th>What it receives</th><th>Why</th></tr>
+<tr><td>Open Library</td><td>a book title, author or ISBN you are searching for</td><td>to find the book and its cover</td></tr>
+<tr><td>Wiktionary</td><td>a single word you looked up</td><td>to define it</td></tr>
+<tr><td>dictionaryapi.dev</td><td>a single word you looked up</td><td>pronunciation only, and the lookup works without it</td></tr>
+<tr><td>Goodreads</td><td>your Goodreads user id, only when you tap to import</td><td>to read your own public shelves</td></tr>
+</table>
+<p>The Goodreads import happens <strong>once, when you ask for it</strong>, and it reads the shelves on the profile whose link you pasted. Readloop deliberately does <strong>not</strong> load the cover images that Goodreads supplies, because those are hosted by Amazon and loading them would tell Amazon which books you own.</p>
+<h2>The device identifier</h2>
+<p>Because there is no account, Readloop's processing service identifies a caller by a random identifier generated once when you install the app. It is used to stop any single install from overwhelming the service, and it is stored as a short-lived counter alongside the name of the feature you used. <strong>No content is stored with it.</strong> The counter expires automatically. Deleting and reinstalling the app produces a new identifier.</p>
+<h2>Microphone and camera</h2>
+<ul>
+<li><strong>Microphone</strong>, so you can speak your recap. Recording only happens when you tap the record button.</li>
+<li><strong>Camera</strong>, so you can scan a book's barcode or read a passage off the page. It runs only while that screen is open.</li>
+<li><strong>Photos:</strong> if you choose your own cover image, iOS hands Readloop only the single image you picked. The app never gets access to your photo library.</li>
+</ul>
+<h2>Subscriptions</h2>
+<p>Subscription purchases are handled by <strong>Apple</strong>, through <strong>RevenueCat</strong> as the service that tells the app whether a subscription is active. Readloop never sees your payment details.</p>
+<h2>Children</h2>
+<p>Readloop is not directed at children under 13 and does not knowingly collect information from them.</p>
+<h2>Deleting your data</h2>
+<p>Your library lives on your device, so <strong>deleting the app deletes it</strong>. Settings also has an option that erases everything the app has stored, including recordings, without deleting the app.</p>
+<p>Because there is no account and no server-side copy of your library, there is nothing else to request deletion of. Usage counts, if you left them on, are anonymous and cannot be traced back to you.</p>
+<h2>Changes</h2>
+<p>If this policy changes in a way that affects what leaves your device, the date at the top will change and the new version will appear here.</p>
+<h2>Contact</h2>
+<p>Questions about this policy: <a href="mailto:francois@nomi.so">francois@nomi.so</a></p>
+</body>
+</html>
