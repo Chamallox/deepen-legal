@@ -59,7 +59,7 @@
 <p>When you record a recap, the audio file is sent to Readloop's processing service, which passes it to <strong>OpenAI</strong> for transcription and then for turning the transcript into concepts. The transcript is sent back to your device and stored there.</p>
 <ul>
 <li><strong>What is sent:</strong> the audio recording, and then its transcript. If the recap belongs to a book, the book's title and the page range are sent with it.</li>
-<li><strong>What happens to it:</strong> Readloop's service processes the request and returns the result. It has <strong>no database</strong>. The audio is held in memory for the length of the request and is not written to disk or to any storage bucket.</li>
+<li><strong>What happens to it:</strong> Readloop's service processes the request and returns the result. <strong>There is no database of anything you record, write or say</strong>, and no copy of your library on any server. The audio is held in memory for the length of the request and is not written to disk or to any storage bucket. The one thing the service does store is a short-lived request counter, described under the device identifier below, which never holds content.</li>
 <li><strong>Who else sees it:</strong> OpenAI, as the provider that performs the transcription and the text generation. Their handling of API data is governed by their own terms.</li>
 <li><strong>The recording itself stays on your device</strong> as well, so you can play it back or retry a failed transcription.</li>
 </ul>
@@ -68,7 +68,7 @@
 <ul>
 <li><strong>What is sent:</strong> your question, plus excerpts from your own notes.</li>
 <li><strong>Ask does not search the web.</strong> Answers come from your notes and nothing else.</li>
-<li>Same processing path as above: no database, no stored copy, OpenAI as the provider.</li>
+<li>Same processing path as above: no stored copy of your question or your notes, and OpenAI as the provider.</li>
 </ul>
 <h3>3. Anonymous usage counts, which you can turn off</h3>
 <p>Readloop records which screens are opened and which buttons are tapped, so friction can be found and fixed. This goes to <strong>PostHog</strong>, hosted in the European Union.</p>
@@ -86,14 +86,34 @@
 <p>Some features look things up in public catalogues. In each case the app talks to that service directly, using a plain connection that carries <strong>no Readloop identifier</strong>, so the service cannot link one lookup to another or build a profile across your session.</p>
 <table>
 <tr><th>Service</th><th>What it receives</th><th>Why</th></tr>
-<tr><td>Open Library</td><td>a book title, author or ISBN you are searching for</td><td>to find the book and its cover</td></tr>
+<tr><td>Open Library</td><td>a book title, author or ISBN you are searching for, and then a request for one cover image</td><td>to find the book and show its cover</td></tr>
 <tr><td>Wiktionary</td><td>a single word you looked up</td><td>to define it</td></tr>
 <tr><td>dictionaryapi.dev</td><td>a single word you looked up</td><td>pronunciation only, and the lookup works without it</td></tr>
 <tr><td>Goodreads</td><td>your Goodreads user id, only when you tap to import</td><td>to read your own public shelves</td></tr>
 </table>
 <p>The Goodreads import happens <strong>once, when you ask for it</strong>, and it reads the shelves on the profile whose link you pasted. Readloop deliberately does <strong>not</strong> load the cover images that Goodreads supplies, because those are hosted by Amazon and loading them would tell Amazon which books you own.</p>
-<h2>The device identifier</h2>
-<p>Because there is no account, Readloop's processing service identifies a caller by a random identifier generated once when you install the app. It is used to stop any single install from overwhelming the service, and it is stored as a short-lived counter alongside the name of the feature you used. <strong>No content is stored with it.</strong> The counter expires automatically. Deleting and reinstalling the app produces a new identifier.</p>
+<h2>The device identifier, and your IP address</h2>
+<p>Because there is no account, Readloop's processing service identifies a caller by a random identifier generated once when you install the app. It is used to stop any single install from overwhelming the service. Deleting and reinstalling the app produces a new identifier.</p>
+<p><strong>Your IP address is also counted, for the same reason and nothing else.</strong> A random identifier can be changed by reinstalling, so on its own it cannot limit anyone determined to get around it. Every request to Readloop's service carries an IP address, as every request on the internet does.</p>
+<p>Both are stored the same way: as a <strong>counter</strong>, keyed by the identifier or the IP together with which feature you used and the current hour, and nothing else. <strong>No content is stored with either one:</strong> no recording, no transcript, no note, no question, no book title.</p>
+<ul>
+<li>The counter is held by <strong>Upstash</strong>, a hosted key-value service.</li>
+<li><strong>Each counter expires within an hour of being written</strong>, automatically, because the hour it belongs to is part of its name and a new hour writes a new one.</li>
+<li><strong>They are not linked together</strong>, and neither is used to build a profile, personalise anything, or recognise you between sessions.</li>
+</ul>
+<p>Separately, Readloop's service writes a short server log line for each request, containing the name of the feature and <strong>how many bytes</strong> were sent. It carries no identifier and none of what you wrote or said. Those logs are kept by <strong>Vercel</strong>, which hosts the service, and expire on that service's own schedule.</p>
+<h2>Everyone involved, in one list</h2>
+<p>Nothing here is a data broker, an advertiser or an analytics network beyond the one named below, and Readloop does not sell or share your information with anyone.</p>
+<table>
+<tr><th>Who</th><th>What reaches them</th><th>Why</th></tr>
+<tr><td>OpenAI</td><td>your recording, its transcript, your questions and your own notes</td><td>to turn speech into text and text into concepts</td></tr>
+<tr><td>Vercel</td><td>every request to Readloop's service, and a log line naming the feature and a byte count</td><td>it hosts the service</td></tr>
+<tr><td>Upstash</td><td>your install identifier and your IP address, as an hourly counter with no content</td><td>so one install or one connection cannot overwhelm the service</td></tr>
+<tr><td>PostHog (EU)</td><td>anonymous usage counts, and anything you type into a bug report or an idea</td><td>to find friction, and to receive what you choose to send</td></tr>
+<tr><td>Apple</td><td>your purchase, and your payment details, which Readloop never sees</td><td>to sell the subscription</td></tr>
+<tr><td>RevenueCat</td><td>that a purchase happened, under an anonymous id it generates itself</td><td>to tell the app a subscription is active</td></tr>
+<tr><td>Open Library, Wiktionary, dictionaryapi.dev, Goodreads</td><td>a title, a word or your Goodreads id, with no Readloop identifier attached</td><td>the lookups in the table above</td></tr>
+</table>
 <h2>Microphone and camera</h2>
 <ul>
 <li><strong>Microphone</strong>, so you can speak your recap. Recording only happens when you tap the record button.</li>
