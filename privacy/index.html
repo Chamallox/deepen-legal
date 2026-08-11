@@ -56,11 +56,11 @@
 <h2>What leaves your device, and where it goes</h2>
 <p>Four things leave your device. Each one is listed with what it contains and who receives it.</p>
 <h3>1. Your recordings and notes, to turn speech into text</h3>
-<p>When you record a recap, the audio file is sent to Deepen's processing service, which passes it to <strong>OpenAI</strong> for transcription and then for turning the transcript into concepts. The transcript is sent back to your device and stored there.</p>
+<p>When you record a recap, the audio file is sent to Deepen's processing service, which passes it to an <strong>external speech-to-text and language model provider</strong> for transcription and then for turning the transcript into concepts. The transcript is sent back to your device and stored there.</p>
 <ul>
 <li><strong>What is sent:</strong> the audio recording, and then its transcript. If the recap belongs to a book, the book's title and the page range are sent with it.</li>
 <li><strong>What happens to it:</strong> Deepen's service processes the request and returns the result. <strong>There is no database of anything you record, write or say</strong>, and no copy of your library on any server. The audio is held in memory for the length of the request and is not written to disk or to any storage bucket. The one thing the service does store is a short-lived request counter, described under the device identifier below, which never holds content.</li>
-<li><strong>Who else sees it:</strong> OpenAI, as the provider that performs the transcription and the text generation. Their handling of API data is governed by their own terms.</li>
+<li><strong>Who else sees it:</strong> the AI provider that performs the transcription and the text generation, which is a company in the United States. It receives the audio and the transcript in order to return a result, and <strong>it is not given any identifier</strong>, so it has nothing that would let it link one request to another or to you. Its handling of API data is governed by its own terms.</li>
 <li><strong>The recording itself stays on your device</strong> as well, so you can play it back or retry a failed transcription.</li>
 </ul>
 <h3>2. Your question and your own notes, when you use Ask</h3>
@@ -68,14 +68,14 @@
 <ul>
 <li><strong>What is sent:</strong> your question, plus excerpts from your own notes.</li>
 <li><strong>Ask does not search the web.</strong> Answers come from your notes and nothing else.</li>
-<li>Same processing path as above: no stored copy of your question or your notes, and OpenAI as the provider.</li>
+<li>Same processing path as above: no stored copy of your question or your notes, and the same AI provider.</li>
 </ul>
 <h3>3. Anonymous usage counts, which you can turn off</h3>
-<p>Deepen records which screens are opened and which buttons are tapped, so friction can be found and fixed. This goes to <strong>PostHog</strong>, hosted in the European Union.</p>
+<p>Deepen records which screens are opened and which buttons are tapped, so friction can be found and fixed. This goes to an <strong>analytics service hosted in the European Union</strong>.</p>
 <p><strong>These events never contain what you read, wrote, said or looked up.</strong> No book title, no author, no note text, no concept, no quote, no question, no word you searched for, and no file name. What travels is shapes rather than content: a count of pages, a count of characters, a duration in whole seconds, the name of a screen, and whether you have a subscription.</p>
 <p><strong>You can turn this off.</strong> Settings has a "Share usage data" switch. Turning it off stops the requests being made at all, rather than filtering them afterwards.</p>
 <h3>4. A bug report or an idea, only when you write one and tap Send</h3>
-<p>Settings has "Report a bug" and "Suggest an idea". Nothing is sent unless you type something and tap Send. This also goes to PostHog, in the same European Union project as above.</p>
+<p>Settings has "Report a bug" and "Suggest an idea". Nothing is sent unless you type something and tap Send. This also goes to that same analytics service, in the same European Union project as above.</p>
 <ul>
 <li><strong>What is sent:</strong> the text you wrote. <strong>A bug report also carries the app version, the build number, your iOS version, and your two-letter region</strong> (for example FR), because a bug that cannot be reproduced cannot be fixed. <strong>An idea carries none of those</strong>, since none of them help.</li>
 <li><strong>You choose every word.</strong> This is the one thing here that is free text rather than a shape, so it contains whatever you put in it. If you would rather not include a book's title or a quote, leave it out and the report still works.</li>
@@ -97,23 +97,24 @@
 <p><strong>Your IP address is also counted, for the same reason and nothing else.</strong> A random identifier can be changed by reinstalling, so on its own it cannot limit anyone determined to get around it. Every request to Deepen's service carries an IP address, as every request on the internet does.</p>
 <p>Both are stored the same way: as a <strong>counter</strong>, keyed by the identifier or the IP together with which feature you used and the current hour, and nothing else. <strong>No content is stored with either one:</strong> no recording, no transcript, no note, no question, no book title.</p>
 <ul>
-<li>The counter is held by <strong>Upstash</strong>, a hosted key-value service.</li>
+<li>The counter is held by a <strong>hosted key-value service</strong>.</li>
 <li><strong>Each counter expires within an hour of being written</strong>, automatically, because the hour it belongs to is part of its name and a new hour writes a new one.</li>
 <li><strong>They are not linked together</strong>, and neither is used to build a profile, personalise anything, or recognise you between sessions.</li>
 </ul>
-<p>Separately, Deepen's service writes a short server log line for each request, containing the name of the feature and <strong>how many bytes</strong> were sent. It carries no identifier and none of what you wrote or said. Those logs are kept by <strong>Vercel</strong>, which hosts the service, and expire on that service's own schedule.</p>
+<p>Separately, Deepen's service writes a short server log line for each request, containing the name of the feature and <strong>how many bytes</strong> were sent. It carries no identifier and none of what you wrote or said. Those logs are kept by the <strong>hosting provider</strong> that runs the service, and expire on that service's own schedule.</p>
 <h2>Everyone involved, in one list</h2>
-<p>Nothing here is a data broker, an advertiser or an analytics network beyond the one named below, and Deepen does not sell or share your information with anyone.</p>
+<p>Nothing here is a data broker or an advertiser, the only analytics is the usage counting described above, and Deepen does not sell or share your information with anyone.</p>
 <table>
 <tr><th>Who</th><th>What reaches them</th><th>Why</th></tr>
-<tr><td>OpenAI</td><td>your recording, its transcript, your questions and your own notes</td><td>to turn speech into text and text into concepts</td></tr>
-<tr><td>Vercel</td><td>every request to Deepen's service, and a log line naming the feature and a byte count</td><td>it hosts the service</td></tr>
-<tr><td>Upstash</td><td>your install identifier and your IP address, as an hourly counter with no content</td><td>so one install or one connection cannot overwhelm the service</td></tr>
-<tr><td>PostHog (EU)</td><td>usage counts under a random install identifier, and anything you type into a bug report or an idea. Every event asks it <strong>not to look up a location</strong>, so no city, region or coordinates are derived</td><td>to find friction, and to receive what you choose to send</td></tr>
+<tr><td>An AI provider, in the United States</td><td>your recording, its transcript, your questions and your own notes, with no identifier attached</td><td>to turn speech into text and text into concepts</td></tr>
+<tr><td>A hosting provider</td><td>every request to Deepen's service, and a log line naming the feature and a byte count</td><td>it runs the service</td></tr>
+<tr><td>A hosted key-value service</td><td>your install identifier and your IP address, as an hourly counter with no content</td><td>so one install or one connection cannot overwhelm the service</td></tr>
+<tr><td>An analytics service, in the European Union</td><td>usage counts under a random install identifier, and anything you type into a bug report or an idea. Every event asks it <strong>not to look up a location</strong>, so no city, region or coordinates are derived</td><td>to find friction, and to receive what you choose to send</td></tr>
 <tr><td>Apple</td><td>your purchase, and your payment details, which Deepen never sees</td><td>to sell the subscription</td></tr>
-<tr><td>RevenueCat</td><td>that a purchase happened, under an anonymous id it generates itself</td><td>to tell the app a subscription is active</td></tr>
+<tr><td>A subscription service</td><td>that a purchase happened, under an anonymous id it generates itself</td><td>to tell the app a subscription is active</td></tr>
 <tr><td>Open Library, Wiktionary, dictionaryapi.dev, Goodreads</td><td>a title, a word or your Goodreads id, with no Deepen identifier attached</td><td>the lookups in the table above</td></tr>
 </table>
+<p>These are service providers acting on Deepen's instructions, and each is bound by its own agreement to protect what it receives. <strong>They are named by role rather than by brand</strong>, because a provider can be replaced without what leaves your device changing. If you want to know which companies they are today, ask at the address at the bottom of this page and you will be told. The public catalogues in the last row are named, because you choose when to query them and one of them is a link you paste yourself.</p>
 <h2>Microphone and camera</h2>
 <ul>
 <li><strong>Microphone</strong>, so you can speak your recap. Recording only happens when you tap the record button.</li>
@@ -121,7 +122,7 @@
 <li><strong>Photos:</strong> if you choose your own cover image, iOS hands Deepen only the single image you picked. The app never gets access to your photo library.</li>
 </ul>
 <h2>Subscriptions</h2>
-<p>Subscription purchases are handled by <strong>Apple</strong>, through <strong>RevenueCat</strong> as the service that tells the app whether a subscription is active. Deepen never sees your payment details.</p>
+<p>Subscription purchases are handled by <strong>Apple</strong>, through a subscription service that tells the app whether a subscription is active. Deepen never sees your payment details.</p>
 <h2>Children</h2>
 <p>Deepen is not directed at children under 13 and does not knowingly collect information from them.</p>
 <h2>Deleting your data</h2>
