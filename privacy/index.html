@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Readloop Privacy Policy</title>
+<title>Deepen Privacy Policy</title>
 <style>
   :root {
     --surface: #FAF5EC; --card: #FFFDF7; --ink: #2B2620;
@@ -46,20 +46,20 @@
 </style>
 </head>
 <body>
-<h1>Readloop Privacy Policy</h1>
+<h1>Deepen Privacy Policy</h1>
 <p><strong>Last updated: 11 August 2026</strong></p>
-<p>Readloop is a reading app. You log the pages you have read, the app asks you one open question, you answer it out loud, and your answer becomes concepts on a map that links everything you read.</p>
+<p>Deepen is a reading app. You log the pages you have read, the app asks you one open question, you answer it out loud, and your answer becomes concepts on a map that links everything you read.</p>
 <p>This page describes exactly what that involves. It is written against the app's actual behaviour rather than as a general statement of intent.</p>
 <h2>There is no account</h2>
-<p>Readloop has no sign-up, no login, no email address and no password. Nothing you do in the app is tied to a name, an email address, or a social profile, because the app never asks for any of them.</p>
-<p>Your books, your notes, your recordings, your word cards and your saved passages are stored <strong>on your device</strong>. They are not backed up to a Readloop server, and there is no server-side copy of your library that we or anyone else could look at.</p>
+<p>Deepen has no sign-up, no login, no email address and no password. Nothing you do in the app is tied to a name, an email address, or a social profile, because the app never asks for any of them.</p>
+<p>Your books, your notes, your recordings, your word cards and your saved passages are stored <strong>on your device</strong>. They are not backed up to a Deepen server, and there is no server-side copy of your library that we or anyone else could look at.</p>
 <h2>What leaves your device, and where it goes</h2>
 <p>Four things leave your device. Each one is listed with what it contains and who receives it.</p>
 <h3>1. Your recordings and notes, to turn speech into text</h3>
-<p>When you record a recap, the audio file is sent to Readloop's processing service, which passes it to <strong>OpenAI</strong> for transcription and then for turning the transcript into concepts. The transcript is sent back to your device and stored there.</p>
+<p>When you record a recap, the audio file is sent to Deepen's processing service, which passes it to <strong>OpenAI</strong> for transcription and then for turning the transcript into concepts. The transcript is sent back to your device and stored there.</p>
 <ul>
 <li><strong>What is sent:</strong> the audio recording, and then its transcript. If the recap belongs to a book, the book's title and the page range are sent with it.</li>
-<li><strong>What happens to it:</strong> Readloop's service processes the request and returns the result. <strong>There is no database of anything you record, write or say</strong>, and no copy of your library on any server. The audio is held in memory for the length of the request and is not written to disk or to any storage bucket. The one thing the service does store is a short-lived request counter, described under the device identifier below, which never holds content.</li>
+<li><strong>What happens to it:</strong> Deepen's service processes the request and returns the result. <strong>There is no database of anything you record, write or say</strong>, and no copy of your library on any server. The audio is held in memory for the length of the request and is not written to disk or to any storage bucket. The one thing the service does store is a short-lived request counter, described under the device identifier below, which never holds content.</li>
 <li><strong>Who else sees it:</strong> OpenAI, as the provider that performs the transcription and the text generation. Their handling of API data is governed by their own terms.</li>
 <li><strong>The recording itself stays on your device</strong> as well, so you can play it back or retry a failed transcription.</li>
 </ul>
@@ -71,7 +71,7 @@
 <li>Same processing path as above: no stored copy of your question or your notes, and OpenAI as the provider.</li>
 </ul>
 <h3>3. Anonymous usage counts, which you can turn off</h3>
-<p>Readloop records which screens are opened and which buttons are tapped, so friction can be found and fixed. This goes to <strong>PostHog</strong>, hosted in the European Union.</p>
+<p>Deepen records which screens are opened and which buttons are tapped, so friction can be found and fixed. This goes to <strong>PostHog</strong>, hosted in the European Union.</p>
 <p><strong>These events never contain what you read, wrote, said or looked up.</strong> No book title, no author, no note text, no concept, no quote, no question, no word you searched for, and no file name. What travels is shapes rather than content: a count of pages, a count of characters, a duration in whole seconds, the name of a screen, and whether you have a subscription.</p>
 <p><strong>You can turn this off.</strong> Settings has a "Share usage data" switch. Turning it off stops the requests being made at all, rather than filtering them afterwards.</p>
 <h3>4. A bug report or an idea, only when you write one and tap Send</h3>
@@ -83,7 +83,7 @@
 <li>Sent with the same random install identifier as the usage counts, so a follow-up report can be recognised as coming from the same install.</li>
 </ul>
 <h2>Third-party services the app talks to directly</h2>
-<p>Some features look things up in public catalogues. In each case the app talks to that service directly, using a plain connection that carries <strong>no Readloop identifier</strong>, so the service cannot link one lookup to another or build a profile across your session.</p>
+<p>Some features look things up in public catalogues. In each case the app talks to that service directly, using a plain connection that carries <strong>no Deepen identifier</strong>, so the service cannot link one lookup to another or build a profile across your session.</p>
 <table>
 <tr><th>Service</th><th>What it receives</th><th>Why</th></tr>
 <tr><td>Open Library</td><td>a book title, author or ISBN you are searching for, and then a request for one cover image</td><td>to find the book and show its cover</td></tr>
@@ -91,42 +91,42 @@
 <tr><td>dictionaryapi.dev</td><td>a single word you looked up</td><td>pronunciation only, and the lookup works without it</td></tr>
 <tr><td>Goodreads</td><td>your Goodreads user id, only when you tap to import</td><td>to read your own public shelves</td></tr>
 </table>
-<p>The Goodreads import happens <strong>once, when you ask for it</strong>, and it reads the shelves on the profile whose link you pasted. Readloop deliberately does <strong>not</strong> load the cover images that Goodreads supplies, because those are hosted by Amazon and loading them would tell Amazon which books you own.</p>
+<p>The Goodreads import happens <strong>once, when you ask for it</strong>, and it reads the shelves on the profile whose link you pasted. Deepen deliberately does <strong>not</strong> load the cover images that Goodreads supplies, because those are hosted by Amazon and loading them would tell Amazon which books you own.</p>
 <h2>The device identifier, and your IP address</h2>
-<p>Because there is no account, Readloop's processing service identifies a caller by a random identifier generated once when you install the app. It is used to stop any single install from overwhelming the service. Deleting and reinstalling the app produces a new identifier.</p>
-<p><strong>Your IP address is also counted, for the same reason and nothing else.</strong> A random identifier can be changed by reinstalling, so on its own it cannot limit anyone determined to get around it. Every request to Readloop's service carries an IP address, as every request on the internet does.</p>
+<p>Because there is no account, Deepen's processing service identifies a caller by a random identifier generated once when you install the app. It is used to stop any single install from overwhelming the service. Deleting and reinstalling the app produces a new identifier.</p>
+<p><strong>Your IP address is also counted, for the same reason and nothing else.</strong> A random identifier can be changed by reinstalling, so on its own it cannot limit anyone determined to get around it. Every request to Deepen's service carries an IP address, as every request on the internet does.</p>
 <p>Both are stored the same way: as a <strong>counter</strong>, keyed by the identifier or the IP together with which feature you used and the current hour, and nothing else. <strong>No content is stored with either one:</strong> no recording, no transcript, no note, no question, no book title.</p>
 <ul>
 <li>The counter is held by <strong>Upstash</strong>, a hosted key-value service.</li>
 <li><strong>Each counter expires within an hour of being written</strong>, automatically, because the hour it belongs to is part of its name and a new hour writes a new one.</li>
 <li><strong>They are not linked together</strong>, and neither is used to build a profile, personalise anything, or recognise you between sessions.</li>
 </ul>
-<p>Separately, Readloop's service writes a short server log line for each request, containing the name of the feature and <strong>how many bytes</strong> were sent. It carries no identifier and none of what you wrote or said. Those logs are kept by <strong>Vercel</strong>, which hosts the service, and expire on that service's own schedule.</p>
+<p>Separately, Deepen's service writes a short server log line for each request, containing the name of the feature and <strong>how many bytes</strong> were sent. It carries no identifier and none of what you wrote or said. Those logs are kept by <strong>Vercel</strong>, which hosts the service, and expire on that service's own schedule.</p>
 <h2>Everyone involved, in one list</h2>
-<p>Nothing here is a data broker, an advertiser or an analytics network beyond the one named below, and Readloop does not sell or share your information with anyone.</p>
+<p>Nothing here is a data broker, an advertiser or an analytics network beyond the one named below, and Deepen does not sell or share your information with anyone.</p>
 <table>
 <tr><th>Who</th><th>What reaches them</th><th>Why</th></tr>
 <tr><td>OpenAI</td><td>your recording, its transcript, your questions and your own notes</td><td>to turn speech into text and text into concepts</td></tr>
-<tr><td>Vercel</td><td>every request to Readloop's service, and a log line naming the feature and a byte count</td><td>it hosts the service</td></tr>
+<tr><td>Vercel</td><td>every request to Deepen's service, and a log line naming the feature and a byte count</td><td>it hosts the service</td></tr>
 <tr><td>Upstash</td><td>your install identifier and your IP address, as an hourly counter with no content</td><td>so one install or one connection cannot overwhelm the service</td></tr>
 <tr><td>PostHog (EU)</td><td>usage counts under a random install identifier, and anything you type into a bug report or an idea. Every event asks it <strong>not to look up a location</strong>, so no city, region or coordinates are derived</td><td>to find friction, and to receive what you choose to send</td></tr>
-<tr><td>Apple</td><td>your purchase, and your payment details, which Readloop never sees</td><td>to sell the subscription</td></tr>
+<tr><td>Apple</td><td>your purchase, and your payment details, which Deepen never sees</td><td>to sell the subscription</td></tr>
 <tr><td>RevenueCat</td><td>that a purchase happened, under an anonymous id it generates itself</td><td>to tell the app a subscription is active</td></tr>
-<tr><td>Open Library, Wiktionary, dictionaryapi.dev, Goodreads</td><td>a title, a word or your Goodreads id, with no Readloop identifier attached</td><td>the lookups in the table above</td></tr>
+<tr><td>Open Library, Wiktionary, dictionaryapi.dev, Goodreads</td><td>a title, a word or your Goodreads id, with no Deepen identifier attached</td><td>the lookups in the table above</td></tr>
 </table>
 <h2>Microphone and camera</h2>
 <ul>
 <li><strong>Microphone</strong>, so you can speak your recap. Recording only happens when you tap the record button.</li>
 <li><strong>Camera</strong>, so you can scan a book's barcode or read a passage off the page. It runs only while that screen is open.</li>
-<li><strong>Photos:</strong> if you choose your own cover image, iOS hands Readloop only the single image you picked. The app never gets access to your photo library.</li>
+<li><strong>Photos:</strong> if you choose your own cover image, iOS hands Deepen only the single image you picked. The app never gets access to your photo library.</li>
 </ul>
 <h2>Subscriptions</h2>
-<p>Subscription purchases are handled by <strong>Apple</strong>, through <strong>RevenueCat</strong> as the service that tells the app whether a subscription is active. Readloop never sees your payment details.</p>
+<p>Subscription purchases are handled by <strong>Apple</strong>, through <strong>RevenueCat</strong> as the service that tells the app whether a subscription is active. Deepen never sees your payment details.</p>
 <h2>Children</h2>
-<p>Readloop is not directed at children under 13 and does not knowingly collect information from them.</p>
+<p>Deepen is not directed at children under 13 and does not knowingly collect information from them.</p>
 <h2>Deleting your data</h2>
 <p>Your library lives on your device, so <strong>deleting the app deletes it</strong>. Settings also has an option that erases everything the app has stored, including recordings, without deleting the app.</p>
-<p>Because there is no account and no server-side copy of your library, there is nothing else to request deletion of. Usage counts, if you left them on, are tied to a random install identifier and nothing else: <strong>no name and no email address</strong>, because the app has never held either. As with every request on the internet, the connection itself carries an IP address, and Readloop asks the analytics service not to look up a location from it.</p>
+<p>Because there is no account and no server-side copy of your library, there is nothing else to request deletion of. Usage counts, if you left them on, are tied to a random install identifier and nothing else: <strong>no name and no email address</strong>, because the app has never held either. As with every request on the internet, the connection itself carries an IP address, and Deepen asks the analytics service not to look up a location from it.</p>
 <h2>Changes</h2>
 <p>If this policy changes in a way that affects what leaves your device, the date at the top will change and the new version will appear here.</p>
 <h2>Contact</h2>
